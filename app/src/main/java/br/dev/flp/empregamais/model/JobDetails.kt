@@ -22,7 +22,7 @@ val jobList = listOf(
         salary = "R$ 6.000 - R$ 8.000",
         description = "Será responsável por programar, desenvolver e implantar sistemas em linguagem JavaScript, realizar correções em sistemas para atender as necessidades dos usuários.",
         requirements = listOf(
-            "Tecnólogo em Análise de Assisted, Engenharia de Software ou áreas afins.",
+            "Tecnólogo em Análise de Sistemas, Engenharia de Software ou áreas afins.",
             "Habilidades em JavaScript, React, HTML, CSS.",
             "Experiência com Figma e Design Responsivo.",
             "Inglês intermediário."
