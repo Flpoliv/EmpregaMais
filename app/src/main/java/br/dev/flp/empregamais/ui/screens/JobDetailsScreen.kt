@@ -17,6 +17,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.dev.flp.empregamais.model.JobDetails
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Home
 
 @Composable
 fun JobDetailsScreen(navController: NavController, job: JobDetails) {
@@ -31,65 +35,112 @@ fun JobDetailsScreen(navController: NavController, job: JobDetails) {
                 )
             )
             .verticalScroll(scrollState)
-            .padding(16.dp)
     ) {
-        // Botão de Voltar
-        Text(
-            text = "← Voltar",
-            fontSize = 18.sp,
-            color = Color.White,
-            fontWeight = FontWeight.Bold,
+        // Topo
+        Box(
             modifier = Modifier
-                .clickable { navController.popBackStack() }
-                .padding(bottom = 16.dp)
-        )
-
-        // Nome da Vaga
-        Text(
-            text = job.title,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White
-        )
-
-        Text(text = "${job.rating} ★ ${job.company}", fontWeight = FontWeight.Bold, color = Color.Yellow)
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(text = job.location, color = Color.LightGray)
-        Text(text = job.workType, fontWeight = FontWeight.Bold, color = Color.Green)
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "Descrição da vaga",
-            fontWeight = FontWeight.Bold,
-            fontSize = 18.sp,
-            color = Color(0xFFC1C1FA)
-        )
-        Text(text = job.description, color = Color.White)
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "Requisitos",
-            fontWeight = FontWeight.Bold,
-            fontSize = 18.sp,
-            color = Color(0xFFC1C1FA)
-        )
-        job.requirements.forEach { requirement ->
-            Text(text = "• $requirement", color = Color.White)
+                .fillMaxWidth()
+                .background(Color(0xFF002366))
+                .padding(vertical = 16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "Sobre a Vaga",
+                fontSize = 18.sp,
+                color = Color.White,
+                fontWeight = FontWeight.Bold
+            )
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Button(
-            onClick = { /* Implementar ação de candidatura */ },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(Color(0xFFFFA500)),
-            shape = RoundedCornerShape(8.dp)
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(16.dp)
         ) {
-            Text(text = "CANDIDATAR-ME", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Column {
+                // Botão de Voltar
+                Text(
+                    text = "←",
+                    fontSize = 24.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .clickable { navController.popBackStack() }
+                        .padding(bottom = 16.dp)
+                )
+
+                // Nome da Vaga
+                Text(
+                    text = job.title,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF003399)
+                )
+
+                Text(
+                    text = "${job.rating} ⭐ ${job.company}",
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFFFA500),
+                    fontSize = 16.sp
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(imageVector = Icons.Default.LocationOn, contentDescription = "Localização", tint = Color.Black)
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(text = job.location, color = Color.Black, fontSize = 14.sp)
+                }
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(imageVector = Icons.Default.Home, contentDescription = "Tipo de trabalho", tint = Color.Black)
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(text = job.workType, fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 14.sp)
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "Descrição da vaga",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    color = Color(0xFF003399)
+                )
+                Text(text = job.description, color = Color.Black, fontSize = 14.sp)
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "Requisitos",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    color = Color(0xFF003399)
+                )
+                job.requirements.forEach { requirement ->
+                    Text(text = "• $requirement", color = Color.Black, fontSize = 14.sp)
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Button(
+                    onClick = { /* Implementar ação de candidatura */ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(Color(0xFFFFA500)),
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Text(
+                        text = "CANDIDATAR-ME",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
         }
     }
 }
