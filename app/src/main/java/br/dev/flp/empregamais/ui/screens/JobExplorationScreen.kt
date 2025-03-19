@@ -1,6 +1,7 @@
 package br.dev.flp.empregamais.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -62,6 +63,10 @@ fun JobList(navController: NavController) {
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape)
+                    .clickable {
+                        // Navega para a tela de PerfilScreen
+                        navController.navigate("perfil") // Substitua "perfil" com a rota desejada
+                    }
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
